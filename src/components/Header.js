@@ -7,7 +7,7 @@ const Header = () => {
         React Face Recognition
       </h1>
       <h2 className="font-semibold text-xl text-center">
-        Detect every face in a photograph
+        Detect every (human) face in a photograph
       </h2>
     </div>
   );
