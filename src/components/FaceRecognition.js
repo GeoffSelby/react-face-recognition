@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const FaceRecognition = ({
   loading,
@@ -14,13 +14,11 @@ const FaceRecognition = ({
     // eslint-disable-next-line
   }, [regionsArray]);
 
+  const image = useRef('');
+
   const calculateFaceLocation = () => {
-    const image = document.querySelector('#inputImage');
-    const width = Number(image.width);
-    const height = Number(image.height);
-    console.log('width:', width);
-    console.log('height:', height);
-    console.log(regionsArray);
+    const width = Number(image.current.clientWidth);
+    const height = Number(image.current.clientHeight);
     const boxes = regionsArray.map(region => {
       const clarifaiFace = region.region_info.bounding_box;
       return {
@@ -41,7 +39,7 @@ const FaceRecognition = ({
   return (
     <div className="mt-4 max-w-xl mx-auto flex justify-center">
       <div className="relative inline-block">
-        <img id="inputImage" src={imageUrl} alt="" />
+        <img ref={image} id="inputImage" src={imageUrl} alt="" />
         {boxesArray !== null &&
           boxesArray.map((box, index) => (
             <div

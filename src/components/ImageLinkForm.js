@@ -24,7 +24,6 @@ const ImageLinkForm = ({
         Clarifai.FACE_DETECT_MODEL,
         text.current.value,
       );
-      console.log(response);
       setLoading(false);
       setRegions(response.outputs[0].data.regions);
     } catch (err) {
